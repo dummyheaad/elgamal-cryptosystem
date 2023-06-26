@@ -8,25 +8,45 @@ Letak keamanan dari algoritma ini terdapat pada sulitnya memecahkan permasalahan
 Permasalahan logaritma diskrit berbunyi:  
 Jika p adalah bilangan prima dan g dan y adalah sembarang bilangan bulat, carilah x sedemikian sehingga:  
 
-$$ \Huge a^{x} \equiv y \hspace{-8pt} \pmod{p} $$
+$$\Huge a^{x} \equiv y \hspace{-8pt} \pmod{p}$$
 
 ## Parameter
 
 ### Input
-- p, bilangan prima besar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> PUBLIK
-- g, bilangan bulat generator (umumnya kecil)  
-  **g harus primitive root modulo terhadap p**
-- d, kunci privat untuk mendekripsi pesan  
-  **1 <= d <= (p - 2)**
-- m, pesan yang ingin dienkripsi  
-  **0 <= m <= (p - 1)**
-- k, bilangan bulat acak  
-  **0 <= k <= (p - 1)**
-- k_pub, kunci publik  
-  $ k\_{pub} \equiv a $
-- k_ephemeral
-- k_mask
 
+- p, bilangan prima besar  
+  **(PUBLIK)**  
+  
+- g, bilangan bulat generator (umumnya kecil)  
+  **g harus primitive root modulo terhadap p**  
+  **(PUBLIK)**
+ 
+- d, kunci privat untuk mendekripsi pesan)  
+  **1 <= d <= (p - 2)**  
+  **(RAHASIA)**
+  
+- m, pesan yang ingin dienkripsi  
+  **0 <= m <= (p - 1)**  
+  **(RAHASIA)**
+  
+- k, bilangan bulat acak  
+  **0 <= k <= (p - 1)**  
+  **(RAHASIA)**
+  
+- k_pub, kunci publik  
+  $\large k\\_pub \equiv g^{d} \pmod{p}$  
+  **(PUBLIK)**
+  
+- k_ephemeral, kunci sementara untuk membentuk k_mask pada penerima pesan  
+  $\large k\\_ephemeral \equiv g^{k} \pmod{p}$  
+  **(PUBLIK)**
+  
+- k_mask, kunci yang digunakan untuk enkripsi dan dekripsi  
+  $\large k\\_mask \equiv (k\\_pub)^{k} \pmod{p}$  
+  **(RAHASIA)**
+  
+- c, ciphertext hasil enkripsi  
+  **(PUBLIK)**
 
 ### Output
 
