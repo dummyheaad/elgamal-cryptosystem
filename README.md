@@ -19,36 +19,64 @@ $$\Huge a^{x} \equiv y \hspace{-8pt} \pmod{p}$$
   
 - g, bilangan bulat generator (umumnya kecil)  
   **g harus primitive root modulo terhadap p**  
-  **(PUBLIK)**
+  **(PUBLIK)**  
  
 - d, kunci privat untuk mendekripsi pesan)  
   **1 <= d <= (p - 2)**  
-  **(RAHASIA)**
+  **(RAHASIA)**  
   
 - m, pesan yang ingin dienkripsi  
   **0 <= m <= (p - 1)**  
-  **(RAHASIA)**
+  **(RAHASIA)**  
   
 - k, bilangan bulat acak  
   **0 <= k <= (p - 1)**  
-  **(RAHASIA)**
+  **(RAHASIA)**  
   
 - k_pub, kunci publik  
   $\large k\\_pub \equiv g^{d} \pmod{p}$  
-  **(PUBLIK)**
+  **(PUBLIK)**  
   
 - k_ephemeral, kunci sementara untuk membentuk k_mask pada penerima pesan  
   $\large k\\_ephemeral \equiv g^{k} \pmod{p}$  
-  **(PUBLIK)**
+  **(PUBLIK)**  
   
 - k_mask, kunci yang digunakan untuk enkripsi dan dekripsi  
   $\large k\\_mask \equiv (k\\_pub)^{k} \pmod{p}$  
-  **(RAHASIA)**
+  **(RAHASIA)**  
   
-- c, ciphertext hasil enkripsi  
-  **(PUBLIK)**
 
 ### Output
+
+- c, ciphertext hasil enkripsi  
+  $\large c \equiv m*k\\_mask \pmod{p}$  
+  **(PUBLIK)**  
+
+- x, plaintext hasil dekripsi
+  $\large k\\_mask \equiv (k\\_ephemeral)^{d} \pmod{p}$
+  
+  $\large k\\_mask\*inv\\_k\\_mask \equiv 1 \pmod{p}$
+  
+  $\large inv\\_k\\_mask \equiv (k\\_ephemeral)^{p - 1 - d} \pmod p$ => (Fermat's little theorem)
+  
+  $\large x \equiv c\*inv\\_k\\_mask \pmod{p}$  
+  **(RAHASIA)**
+  
+### (Tambahan) Fermat's little theorem
+
+  Jika a dan p adalah *coprime* maka:  
+  $\large a^{p - 1} \equiv 1 \pmod{p}$  
+  
+  sehingga, kita bisa menghitung inverse dari a dalam mod p, yaitu:  
+  $\large a^{p - 1} \equiv 1 \pmod{p}$  
+  $\large a\*a^{p - 2} \equiv 1 \pmod{p}$  
+  
+  maka $\large a^{p - 2}$ adalah inverse a dalam mod p  
+  Dapat dituliskan dalam bentuk umum:  
+  
+  $\large a^{d}\*a^{p - 1 - d} \equiv 1 \pmod{p}$  
+  diperoleh inverse dari $\large a^{d}$ bernilai $\large a^{p - 1 - d}$
+
 
 ## Skenario
 
