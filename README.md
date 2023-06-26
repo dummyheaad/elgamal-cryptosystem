@@ -72,10 +72,10 @@ $$\Huge a^{x} \equiv y \hspace{-8pt} \pmod{p}$$
   $\large a\*a^{p - 2} \equiv 1 \pmod{p}$  
   
   maka $\large a^{p - 2}$ adalah inverse a dalam mod p  
-  Dapat dituliskan dalam bentuk umum:  
-  
+
+  Berdasarkan pengamatan di atas diperoleh bentuk umum:  
   $\large a^{d}\*a^{p - 1 - d} \equiv 1 \pmod{p}$  
-  diperoleh inverse dari $\large a^{d}$ bernilai $\large a^{p - 1 - d}$
+  maka $\large a^{p - 1 - d}$ adalah inverse dari $\large a^{d}$ dalam mod p  
 
 
 ## Skenario
